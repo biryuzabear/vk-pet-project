@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainPage {
@@ -28,7 +29,7 @@ public class MainPage {
     VKService vkService;
 
     @GetMapping("/login")
-    public String login(@RequestParam String code, Model model) throws ClientException, ApiException {
+    public String login(@RequestParam String code) throws ClientException, ApiException {
         UserAuthResponse authResponse = vk.oAuth()
                 .userAuthorizationCodeFlow(APP_ID, CLIENT_SECRET, REDIRECT_URI, code)
                 .execute();
@@ -37,13 +38,13 @@ public class MainPage {
         vkService.setUserActor(actor);
         vkService.setVk(vk);
 
-        model.addAttribute("allAccounts", vkService.getAccounts());
 
-        return "redirect:/";
+
+        return"redirect:/";
     }
 
     @GetMapping("/")
-    public String mainPage() {
+    public String mainPage(Model model) throws ClientException, ApiException {
 
         if (!vkService.isLogin())
             return "redirect:https://oauth.vk.com/authorize" +
@@ -54,6 +55,7 @@ public class MainPage {
                     "&response_type=code" +
                     "&v=5.131";
 
+        model.addAttribute("accounts", vkService.getAccounts());
         return "mainPage";
 
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
 
         <script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
 
@@ -240,16 +241,52 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Login successfully!</h1>
-
-
-
-
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
                 </div>
                 <!-- /.container-fluid -->
+
+
+
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Kitchen Sink
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive" >
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Account ID</th>
+                                        <th>Account Name</th>
+                                        <th>Account Type</th>
+                                        <th>Access role</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="account : ${accounts}">
+                                        <td th:text="${account.getAccountId()}"/>
+                                        <td th:text="${account.getAccountName()}"/>
+                                        <td th:text="${account.getAccountType()}"/>
+                                        <td th:text="${account.getAccessRole()}"/>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+
+
             </div>
             <!-- /#page-wrapper -->
 

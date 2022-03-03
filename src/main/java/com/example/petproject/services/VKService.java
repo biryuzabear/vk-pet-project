@@ -2,12 +2,15 @@ package com.example.petproject.services;
 
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
+import com.vk.api.sdk.exceptions.ApiException;
+import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.ads.Account;
-import org.springframework.context.annotation.Scope;
+import com.vk.api.sdk.objects.ads.responses.GetAccountsResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @SessionScope
@@ -25,12 +28,11 @@ public class VKService {
     }
 
     public boolean isLogin() {
-        System.out.println(userActor);
         return userActor != null && vk!=null;
     }
 
 
-    public ArrayList<Account> getAccounts() {
-        return new ArrayList<>();
+    public List<GetAccountsResponse> getAccounts() throws ClientException, ApiException {
+        return  vk.ads().getAccounts(userActor).execute();
     }
 }
