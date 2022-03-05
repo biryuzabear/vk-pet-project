@@ -16,7 +16,7 @@ public class Project {
     private String projectName;
 
     @Column(name = "user_id", length = 12)
-    private String userId;
+    private Integer userId;
 
     @Column(name = "account_id")
     private Integer accountId;
@@ -51,11 +51,11 @@ public class Project {
         this.accountId = accountId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -73,5 +73,8 @@ public class Project {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Project() {
     }
 }

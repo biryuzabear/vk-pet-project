@@ -2,7 +2,13 @@ package com.example.petproject.repositories;
 
 import com.example.petproject.data.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-interface ProjectRepo extends JpaRepository<Project, Integer> {
+import java.util.List;
+
+@Repository
+public interface ProjectRepo extends JpaRepository<Project, Integer> {
+
+    List<Project> findByUserId(Integer userId);
 
 }

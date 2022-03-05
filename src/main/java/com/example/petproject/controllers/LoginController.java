@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MainPage {
+public class LoginController {
 
     private static final Integer APP_ID = 8091762;
     private static final String CLIENT_SECRET = "EDWu1sdfJzBuBre10ueC";
@@ -38,25 +38,16 @@ public class MainPage {
         vkService.setUserActor(actor);
         vkService.setVk(vk);
 
-
-
-        return"redirect:/";
+        return "redirect:/main";
     }
 
     @GetMapping("/")
-    public String mainPage(Model model) throws ClientException, ApiException {
+    public String mainPage(){
 
         if (!vkService.isLogin())
-            return "redirect:https://oauth.vk.com/authorize" +
-                    "?client_id=8091762" +
-                    "&display=page" +
-                    "&redirect_uri=http://localhost:8080/login" +
-                    "&scope=ads" +
-                    "&response_type=code" +
-                    "&v=5.131";
-
-        model.addAttribute("accounts", vkService.getAccounts());
-        return "mainPage";
+            return "login";
+        else
+            return "redirect:/main";
 
     }
 

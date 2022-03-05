@@ -17,9 +17,9 @@ public class SecurityAspect {
 
     @Pointcut("execution(* com.example.petproject.controllers.*.*(..)))")
     private void anyControllerMethod(){}
-    @Pointcut("execution(* com.example.petproject.controllers.MainPage.mainPage(..))")
+    @Pointcut("execution(* com.example.petproject.controllers.LoginController.mainPage(..))")
     private void mainPageMethod(){}
-    @Pointcut("execution(* com.example.petproject.controllers.MainPage.login(..))")
+    @Pointcut("execution(* com.example.petproject.controllers.LoginController.login(..))")
     private void loginMethod(){}
     @Pointcut("anyControllerMethod() && !mainPageMethod() && !loginMethod()")
     private void anyControllerMethodExceptMainPageAndLoginMethod(){}

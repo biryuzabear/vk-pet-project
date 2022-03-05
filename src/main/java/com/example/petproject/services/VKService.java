@@ -35,4 +35,9 @@ public class VKService {
     public List<GetAccountsResponse> getAccounts() throws ClientException, ApiException {
         return  vk.ads().getAccounts(userActor).execute();
     }
+
+
+    public int getUserId() {
+        return userActor.getId();
+    }
 }

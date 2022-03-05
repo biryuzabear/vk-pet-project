@@ -253,7 +253,7 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Kitchen Sink
+                            All these client campaigns
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -261,18 +261,18 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th>Project ID</th>
+                                        <th>Project Name</th>
+                                        <th>User ID</th>
                                         <th>Account ID</th>
-                                        <th>Account Name</th>
-                                        <th>Account Type</th>
-                                        <th>Access role</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="account : ${accounts}">
-                                        <td th:text="${account.getAccountId()}"/>
-                                        <td th:text="${account.getAccountName()}"/>
-                                        <td th:text="${account.getAccountType()}"/>
-                                        <td th:text="${account.getAccessRole()}"/>
+                                    <tr th:each="project : ${projects}">
+                                        <td th:text="${project.getId()}"/>
+                                        <td th:text="${project.getProjectName()}"/>
+                                        <td th:text="${project.getUserId()}"/>
+                                        <td th:text="${project.getAccountId()}"/>
                                     </tr>
                                     </tbody>
                                 </table>

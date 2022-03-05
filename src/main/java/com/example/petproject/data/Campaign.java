@@ -29,4 +29,6 @@ public class Campaign {
         this.id = id;
     }
 
+    public Campaign() {
+    }
 }
