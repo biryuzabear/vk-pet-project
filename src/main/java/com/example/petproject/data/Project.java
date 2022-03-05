@@ -21,6 +21,9 @@ public class Project {
     @Column(name = "account_id")
     private Integer accountId;
 
+    @Column(name = "client_id")
+    private Integer clientId;
+
     @Column(name = "all_campaigns")
     private Boolean allCampaigns;
 
@@ -73,6 +76,12 @@ public class Project {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getClientId() { return clientId; }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public Project() {

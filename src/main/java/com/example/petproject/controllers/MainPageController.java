@@ -13,22 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/main")
 public class MainPageController {
 
-    final
-    MainPageService mainPageService;
-
-    final
-    VKService vkService;
-
-    public MainPageController(MainPageService mainPageService, VKService vkService) {
-        this.mainPageService = mainPageService;
-        this.vkService = vkService;
-    }
-
-    @GetMapping
-    public String main(Model model) {
-        model.addAttribute("projects", mainPageService.getAllProjects(vkService.getUserId()));
-        return "mainPage";
-    }
 
 
 
