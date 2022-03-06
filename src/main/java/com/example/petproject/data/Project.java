@@ -24,8 +24,8 @@ public class Project {
     @Column(name = "client_id")
     private Integer clientId;
 
-    @Column(name = "all_campaigns")
-    private Boolean allCampaigns;
+    @Column(name = "favourite")
+    private Boolean favourite;
 
     @OneToMany(mappedBy = "project")
     private Set<Campaign> campaigns = new LinkedHashSet<>();
@@ -38,12 +38,12 @@ public class Project {
         this.campaigns = campaigns;
     }
 
-    public Boolean getAllCampaigns() {
-        return allCampaigns;
+    public Boolean getFavourite() {
+        return favourite;
     }
 
-    public void setAllCampaigns(Boolean allCampaigns) {
-        this.allCampaigns = allCampaigns;
+    public void setFavourite(Boolean allCampaigns) {
+        this.favourite = allCampaigns;
     }
 
     public Integer getAccountId() {

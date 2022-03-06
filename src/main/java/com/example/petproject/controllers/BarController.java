@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,14 +28,19 @@ public class BarController {
 
 
     @GetMapping("/main")
-    public String showMainPage(Model model) throws ClientException, ApiException {
-        model.addAttribute("projects", mainPageService.getAllProjects(vkService.getUserId()))
-                .addAttribute("userName",vkService.getUserName());
+    public String showMainPage() {
         return "main";
     }
 
+    @ModelAttribute
+    public void barInfo(Model model) throws ClientException, ApiException {
+        model.addAttribute("projects", mainPageService.getAllProjects(vkService.getUserId()))
+                .addAttribute("userName",vkService.getUserName());
+    }
+
     @GetMapping("/add")
-    public String showAddPage(Model model){
+    public String showAddPage(Model model) throws ClientException, ApiException {
+        model.addAttribute("cabinets", vkService.getAccounts());
         return "add";
     }
 
