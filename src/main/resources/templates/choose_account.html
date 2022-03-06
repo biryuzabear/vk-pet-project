@@ -130,7 +130,7 @@
 
                 <div class="list-group">
                     <a th:each="account: ${accounts}" th:text="${account.accountName}"
-                       th:href="@{/add/{id}(id=${account.accountId})}"
+                       th:href="@{/add/acc_{id}(id=${account.accountId})}"
                        class="list-group-item">New Comment
                     </a>
                 </div>

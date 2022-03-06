@@ -123,13 +123,14 @@
         <!-- /.container-fluid -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                Нажмите на нужный кабинет:
+                Нажмите на нужного клиента:
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
 
                 <div class="list-group">
                     <a th:each="client: ${clients}" th:text="${client.name}"
+                       th:href="@{/add/client_{id}(id=${client.id})}"
                        class="list-group-item">New Comment
                     </a>
                 </div>

@@ -18,6 +18,8 @@ public class VKService {
 
     UserActor userActor;
     VkApiClient vk;
+    String username;
+    int userId;
 
     public void setUserActor(UserActor userActor) {
         this.userActor = userActor;
@@ -39,11 +41,14 @@ public class VKService {
 
 
     public int getUserId() {
-        return userActor.getId();
+        if(userId == 0)
+            userId = userActor.getId();
+            return userId;
     }
 
     public String getUserName() throws ClientException, ApiException {
-        return vk.users()
+        if(username==null)
+        username =  vk.users()
                 .get(userActor)
                 .userIds(String.valueOf(userActor.getId()))
                 .execute().get(0).getFirstName() + " " +
@@ -51,11 +56,11 @@ public class VKService {
                 .get(userActor)
                 .userIds(String.valueOf(userActor.getId()))
                 .execute().get(0).getLastName();
+        return username;
     }
 
 
     public List<GetClientsResponse> getClients(Integer accountId) throws ClientException, ApiException {
-        System.out.println("Her it is" + vk.ads().getClients(userActor,accountId).execute());
         return vk.ads().getClients(userActor,accountId).execute();
     }
 

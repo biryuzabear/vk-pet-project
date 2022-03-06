@@ -50,12 +50,21 @@ public class AddingProjectController {
     @ModelAttribute
     public void barInfo(Model model) throws ClientException, ApiException {
         model.addAttribute("projects", projectService.getAllProjects(vkService.getUserId()))
-                .addAttribute("userName",vkService.getUserName());
+                .addAttribute("userName",vkService.getUserName())
+                .addAttribute("projectDto", new ProjectDto());
     }
 
-    @GetMapping("/{accountId}")
+    @GetMapping("/acc_{accountId}")
     public String getClients(@PathVariable Integer accountId, Model model) throws ClientException, ApiException {
         model.addAttribute("clients", vkService.getClients(accountId));
         return "choose_client";
     }
+
+    @GetMapping("/client_{clientId}")
+    public String getCampaigns(@PathVariable Integer clientId, Model model) throws ClientException, ApiException {
+//        model.addAttribute("clients", vkService.getAllCampaigns(accountId,clientId));
+        return "choose_campaigns";
+    }
+
+
 }
