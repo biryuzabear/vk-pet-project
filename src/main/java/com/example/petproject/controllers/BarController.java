@@ -1,6 +1,6 @@
 package com.example.petproject.controllers;
 
-import com.example.petproject.services.MainPageService;
+import com.example.petproject.services.ProjectService;
 import com.example.petproject.services.VKService;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
@@ -18,7 +18,7 @@ public class BarController {
     @Autowired
     VKService vkService;
     @Autowired
-    private MainPageService mainPageService;
+    private ProjectService projectService;
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
@@ -26,22 +26,22 @@ public class BarController {
         return "login";
     }
 
-
     @GetMapping("/main")
     public String showMainPage() {
         return "main";
     }
 
+
     @ModelAttribute
     public void barInfo(Model model) throws ClientException, ApiException {
-        model.addAttribute("projects", mainPageService.getAllProjects(vkService.getUserId()))
+        model.addAttribute("projects", projectService.getAllProjects(vkService.getUserId()))
                 .addAttribute("userName",vkService.getUserName());
     }
 
     @GetMapping("/add")
     public String showAddPage(Model model) throws ClientException, ApiException {
-        model.addAttribute("cabinets", vkService.getAccounts());
-        return "add";
+        model.addAttribute("accounts", vkService.getAccounts());
+        return "choose_account";
     }
 
 }

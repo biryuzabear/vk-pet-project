@@ -1,14 +1,11 @@
 package com.example.petproject.services;
-
-import com.vk.api.sdk.client.Lang;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
-import com.vk.api.sdk.objects.ads.Account;
 import com.vk.api.sdk.objects.ads.responses.GetAccountsResponse;
-import com.vk.api.sdk.objects.users.Fields;
-import com.vk.api.sdk.objects.users.UserXtrCounters;
+import com.vk.api.sdk.objects.ads.responses.GetCampaignsResponse;
+import com.vk.api.sdk.objects.ads.responses.GetClientsResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -54,5 +51,25 @@ public class VKService {
                 .get(userActor)
                 .userIds(String.valueOf(userActor.getId()))
                 .execute().get(0).getLastName();
+    }
+
+
+    public List<GetClientsResponse> getClients(Integer accountId) throws ClientException, ApiException {
+        System.out.println("Her it is" + vk.ads().getClients(userActor,accountId).execute());
+        return vk.ads().getClients(userActor,accountId).execute();
+    }
+
+    public List<GetCampaignsResponse> getAllCampaigns(Integer accountId, Integer clientId) throws ClientException, ApiException {
+        return vk.ads()
+                .getCampaigns(userActor, accountId)
+                .clientId(clientId).execute();
+    }
+
+    public List<GetCampaignsResponse> getCampaigns(Integer accountId, Integer clientId, String campaignsIds) throws ClientException, ApiException {
+        return vk.ads()
+                .getCampaigns(userActor, accountId)
+                .clientId(clientId)
+                .campaignIds(campaignsIds)
+                .execute();
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MainPageService {
+public class ProjectService {
 
     final
     CampaignRepo campaignRepo;
@@ -16,7 +16,7 @@ public class MainPageService {
     final
     ProjectRepo projectRepo;
 
-    public MainPageService(CampaignRepo campaignRepo, ProjectRepo projectRepo) {
+    public ProjectService(CampaignRepo campaignRepo, ProjectRepo projectRepo) {
         this.campaignRepo = campaignRepo;
         this.projectRepo = projectRepo;
     }

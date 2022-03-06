@@ -27,7 +27,7 @@ public class Project {
     @Column(name = "favourite")
     private Boolean favourite;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
     private Set<Campaign> campaigns = new LinkedHashSet<>();
 
     public Set<Campaign> getCampaigns() {
