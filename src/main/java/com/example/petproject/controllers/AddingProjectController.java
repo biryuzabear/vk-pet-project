@@ -27,22 +27,23 @@ public class AddingProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @PostMapping()
-    public String add(@ModelAttribute("projectDto") ProjectDto projectDto) {
+    @PostMapping("/account/{accountId}/client/{clientId}")
+    public String add(@PathVariable Integer accountId, @PathVariable Integer clientId,@ModelAttribute("projectDto") ProjectDto projectDto) {
         Project project = new Project();
 
-        for (ProjectDto.CampaignDto campaignDto : projectDto.getCampaigns()) {
+        project.setUserId(vkService.getUserId());
+        project.setAccountId(accountId);
+        project.setClientId(clientId);
+        project.setProjectName(projectDto.getProjectName());
+        project.setFavourite(projectDto.getFavourite());
+        projectRepo.save(project);
+
+        for (Integer id : projectDto.getCampaigns()) {
             Campaign campaign = new Campaign();
-            campaign.setId(campaignDto.getId());
+            campaign.setId(id);
+            campaign.setProject(project);
             campaignRepo.save(campaign);
         }
-
-        project.setUserId(vkService.getUserId());
-        project.setAccountId(projectDto.getAccountId());
-        project.setProjectName(projectDto.getProjectName());
-        project.setClientId(projectDto.getClientId());
-        project.setFavourite(false);
-        projectRepo.save(project);
 
         return "redirect:/main";
     }
@@ -50,19 +51,19 @@ public class AddingProjectController {
     @ModelAttribute
     public void barInfo(Model model) throws ClientException, ApiException {
         model.addAttribute("projects", projectService.getAllProjects(vkService.getUserId()))
-                .addAttribute("userName",vkService.getUserName())
-                .addAttribute("projectDto", new ProjectDto());
+                .addAttribute("userName", vkService.getUserName());
     }
 
-    @GetMapping("/acc_{accountId}")
+    @GetMapping("/account/{accountId}")
     public String getClients(@PathVariable Integer accountId, Model model) throws ClientException, ApiException {
         model.addAttribute("clients", vkService.getClients(accountId));
         return "choose_client";
     }
 
-    @GetMapping("/client_{clientId}")
-    public String getCampaigns(@PathVariable Integer clientId, Model model) throws ClientException, ApiException {
-//        model.addAttribute("clients", vkService.getAllCampaigns(accountId,clientId));
+    @GetMapping("/account/{accountId}/client/{clientId}")
+    public String getCampaigns(@PathVariable Integer accountId, @PathVariable Integer clientId, Model model) throws ClientException, ApiException {
+        model.addAttribute("campaigns", vkService.getAllCampaigns(accountId, clientId))
+                .addAttribute("projectDto", new ProjectDto());
         return "choose_campaigns";
     }
 

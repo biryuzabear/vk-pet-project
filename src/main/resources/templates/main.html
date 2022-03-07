@@ -17,16 +17,16 @@
     <title>Startmin - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/startmin.css" rel="stylesheet">
+    <link href="/css/startmin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,7 +94,7 @@
                         <a href="/add"><i class="fa fa-plus-circle fa-fw"></i> Добавить проект</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Клиенты<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Проекты<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level" th:each="project: ${projects}">
                             <li>
                                 <a href="#" th:text="${project.projectName}"></a>
@@ -166,23 +166,17 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="../js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../js/metisMenu.min.js"></script>
+<script src="/js/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../js/startmin.js"></script>
+<script src="/js/startmin.js"></script>
 
-
-<script type="text/javascript">
-    VK.init({
-        apiId: 8091762
-    });
-</script>
 
 
 </body>

@@ -8,11 +8,7 @@ import java.util.Set;
 @Data
 public class ProjectDto implements Serializable {
     private String projectName;
-    private Integer accountId;
-    private Integer clientId;
-    private Set<CampaignDto> campaigns = new LinkedHashSet<>();
-    @Data
-    public static class CampaignDto implements Serializable {
-        private Integer id;
-    }
+    private Boolean favourite;
+    private Set<Integer> campaigns = new LinkedHashSet<>();
+
 }
