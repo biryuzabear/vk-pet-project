@@ -117,10 +117,12 @@ body {
 }
 
 .sidebar ul li {
+    overflow:auto;
     border-bottom: 1px solid #e7e7e7;
 }
 
 .sidebar ul li a.active {
+    overflow:auto;
     background-color: #eee;
 }
 
@@ -138,10 +140,16 @@ body {
 
 .sidebar .nav-second-level li,
 .sidebar .nav-third-level li {
+    max-height:150px;
+    overflow-x:hidden;
+    overflow-y:auto;
     border-bottom: 0!important;
 }
 
 .sidebar .nav-second-level li a {
+    max-height:150px;
+overflow-x:hidden;
+overflow-y:auto;
     padding-left: 37px;
 }
 

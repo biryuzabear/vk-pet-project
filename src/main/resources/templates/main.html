@@ -95,9 +95,9 @@
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Проекты<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level" th:each="project: ${projects}">
+                        <ul class="nav nav-second-level"  style="-ms-overflow-x: auto" >
                             <li>
-                                <a href="#" th:text="${project.projectName}"></a>
+                                <a href="#" th:each="project: ${projects}" th:text="${project.projectName}"></a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -120,43 +120,46 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        All these client campaigns
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Project ID</th>
+                                    <th>Project Name</th>
+                                    <th>User ID</th>
+                                    <th>Account ID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="project : ${projects}">
+                                    <td th:text="${project.getId()}"/>
+                                    <td th:text="${project.getProjectName()}"/>
+                                    <td th:text="${project.getUserId()}"/>
+                                    <td th:text="${project.getAccountId()}"/>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+
         </div>
         <!-- /.container-fluid -->
 
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    All these client campaigns
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>Project ID</th>
-                                <th>Project Name</th>
-                                <th>User ID</th>
-                                <th>Account ID</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="project : ${projects}">
-                                <td th:text="${project.getId()}"/>
-                                <td th:text="${project.getProjectName()}"/>
-                                <td th:text="${project.getUserId()}"/>
-                                <td th:text="${project.getAccountId()}"/>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
 
 
     </div>
