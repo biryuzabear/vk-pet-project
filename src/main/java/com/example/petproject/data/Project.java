@@ -86,4 +86,14 @@ public class Project {
 
     public Project() {
     }
+
+    public String getCampaignsAsString() {
+        StringBuilder campaignsString = new StringBuilder("[");
+        for (Campaign campaign : campaigns) {
+            campaignsString.append(campaign.getId()).append(",");
+        }
+        campaignsString.deleteCharAt(campaignsString.length()-1);
+        campaignsString.append("]");
+        return campaignsString.toString();
+    }
 }

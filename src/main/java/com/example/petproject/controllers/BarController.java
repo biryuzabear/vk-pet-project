@@ -1,5 +1,6 @@
 package com.example.petproject.controllers;
 
+import com.example.petproject.data.Project;
 import com.example.petproject.services.ProjectService;
 import com.example.petproject.services.VKService;
 import com.vk.api.sdk.exceptions.ApiException;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,6 +45,14 @@ public class BarController {
     public String showAddPage(Model model) throws ClientException, ApiException {
         model.addAttribute("accounts", vkService.getAccounts());
         return "choose_account";
+    }
+
+    @RequestMapping("/project/{project_id}")
+    public String projectPage(@PathVariable("project_id") Integer projectId,Model model) throws ClientException, ApiException {
+        Project project = projectService.getProject(projectId).orElseThrow();
+        model.addAttribute("thisProject", project)
+                .addAttribute("campaigns", projectService.getCampaigns(project));
+        return "project";
     }
 
 }

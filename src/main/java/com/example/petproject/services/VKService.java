@@ -1,4 +1,5 @@
 package com.example.petproject.services;
+import com.example.petproject.data.Project;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.exceptions.ApiException;
@@ -16,10 +17,10 @@ import java.util.List;
 @SessionScope
 public class VKService {
 
-    UserActor userActor;
-    VkApiClient vk;
-    String username;
-    int userId;
+    private UserActor userActor;
+    private VkApiClient vk;
+    private String username;
+    private int userId;
 
     public void setUserActor(UserActor userActor) {
         this.userActor = userActor;
@@ -68,6 +69,11 @@ public class VKService {
         return vk.ads()
                 .getCampaigns(userActor, accountId)
                 .clientId(clientId).execute();
+    }
+    public List<GetCampaignsResponse> getCampaigns(Project project) throws ClientException, ApiException {
+        if (project.getCampaigns().isEmpty())
+        return getAllCampaigns(project.getAccountId(),project.getClientId());
+        else return getCampaigns(project.getAccountId(),project.getClientId(),project.getCampaignsAsString());
     }
 
     public List<GetCampaignsResponse> getCampaigns(Integer accountId, Integer clientId, String campaignsIds) throws ClientException, ApiException {
