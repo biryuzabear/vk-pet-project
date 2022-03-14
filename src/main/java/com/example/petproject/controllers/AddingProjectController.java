@@ -12,7 +12,10 @@ import com.vk.api.sdk.exceptions.ClientException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add")
@@ -28,7 +31,14 @@ public class AddingProjectController {
     private ProjectService projectService;
 
     @PostMapping("/account/{accountId}/client/{clientId}")
-    public String add(@PathVariable Integer accountId, @PathVariable Integer clientId,@ModelAttribute("projectDto") ProjectDto projectDto) {
+    public String add(@PathVariable Integer accountId, @PathVariable Integer clientId, @Valid ProjectDto projectDto, BindingResult bindingResult, Model model) throws ClientException, ApiException {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("campaigns", vkService.getAllCampaigns(accountId, clientId));
+            return "choose_campaigns";
+        }
+
+
         Project project = new Project();
 
         project.setUserId(vkService.getUserId());

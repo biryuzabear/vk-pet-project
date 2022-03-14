@@ -52,28 +52,35 @@
                                 Выберите нужные кампании:
                             </div>
                             <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <form action="#"
-                                      th:action="@{/add/account/{acc}/client/{id}(acc = ${accountId},id=${clientId})}"
-                                      th:object="${projectDto}" method="post">
-                                    <div class="list-group">
-                                        <a th:each="campaign: ${campaigns}" class="list-group-item">
-                                            <input type="checkbox" th:value="${campaign.id}" th:id="${campaign.id}"
-                                                   th:field="*{campaigns}">
-                                            <label th:text="${campaign.name}" th:for="${campaign.id}">
-                                                Label
-                                            </label>
-                                        </a>
-                                    </div>
+                            <div class="panel-body" >
 
-                                    <br>
 
-                                    <p>Введите имя проекта: <input type="text" th:field="*{projectName}"/></p>
-                                    <p>Добавить в избранное: <input type="checkbox" th:field="*{favourite}"/></p>
-                                    <p><input type="submit" value="Создать"/> <input type="reset"
-                                                                                     value="Сбросить настройки"/></p>
+                                    <form action="#"
+                                          th:object="${projectDto}"
+                                          th:action="@{/add/account/{acc}/client/{id}(acc = ${accountId},id=${clientId})}"
+                                          method="post">
+                                        <div class="list-group">
+                                            <a th:each="campaign: ${campaigns}" class="list-group-item">
+                                                <input type="checkbox" th:value="${campaign.id}" th:id="${campaign.id}"
+                                                       th:field="*{campaigns}" th:errorclass="form-group has-error">
+                                                <label th:text="${campaign.name}" th:for="${campaign.id}">
+                                                    Label
+                                                </label>
+                                            </a>
+                                        </div>
 
-                                </form>
+                                        <br>
+<!--                                        <p>Введите имя проекта: <input type="text" th:field="*{projectName}" style="background-color:tomato;"/></p>-->
+                                        <p>Введите имя проекта: <input type="text" th:field="*{projectName}" th:style="${#fields.hasErrors('projectName')} ? 'background-color:tomato;'"/></p>
+                                        <p th:if="${#fields.hasErrors('projectName')}"
+                                           th:errors="*{projectName}">Ошибки!</p>
+                                        <p>Добавить в избранное: <input type="checkbox" th:field="*{favourite}"/></p>
+                                        <p><input type="submit" value="Создать"/> <input type="reset"
+                                                                                         value="Сбросить настройки"/>
+                                        </p>
+
+                                    </form>
+
                             </div>
                         </div>
                         <!-- /.col-lg-6 -->
