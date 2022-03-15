@@ -1,6 +1,5 @@
 package com.example.petproject.services;
 
-import com.example.petproject.data.Campaign;
 import com.example.petproject.data.Project;
 import com.example.petproject.dto.CampaignDto;
 import com.example.petproject.repositories.CampaignRepo;
@@ -8,7 +7,6 @@ import com.example.petproject.repositories.ProjectRepo;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.ads.responses.GetCampaignsResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -8,7 +8,6 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import com.vk.api.sdk.objects.UserAuthResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +23,12 @@ public class LoginController {
     TransportClient transportClient = new HttpTransportClient();
     VkApiClient vk = new VkApiClient(transportClient);
 
-    @Autowired
+    final
     VKService vkService;
+
+    public LoginController(VKService vkService) {
+        this.vkService = vkService;
+    }
 
     @GetMapping("/login")
     public String login(@RequestParam String code) throws ClientException, ApiException {

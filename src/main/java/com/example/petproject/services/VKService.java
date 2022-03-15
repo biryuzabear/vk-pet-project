@@ -10,7 +10,6 @@ import com.vk.api.sdk.objects.ads.responses.GetClientsResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,8 +32,6 @@ public class VKService {
     public boolean isLogin() {
         return userActor != null && vk != null;
     }
-
-
 
     public List<GetAccountsResponse> getAccounts() throws ClientException, ApiException {
         return vk.ads().getAccounts(userActor).execute();

@@ -9,7 +9,6 @@ import com.example.petproject.services.ProjectService;
 import com.example.petproject.services.VKService;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,14 +20,20 @@ import javax.validation.Valid;
 @RequestMapping("/add")
 public class AddingProjectController {
 
-    @Autowired
+    final
     ProjectRepo projectRepo;
-    @Autowired
+    final
     CampaignRepo campaignRepo;
-    @Autowired
+    final
     VKService vkService;
-    @Autowired
-    private ProjectService projectService;
+    private final ProjectService projectService;
+
+    public AddingProjectController(ProjectRepo projectRepo, CampaignRepo campaignRepo, VKService vkService, ProjectService projectService) {
+        this.projectRepo = projectRepo;
+        this.campaignRepo = campaignRepo;
+        this.vkService = vkService;
+        this.projectService = projectService;
+    }
 
     @PostMapping("/account/{accountId}/client/{clientId}")
     public String add(@PathVariable Integer accountId, @PathVariable Integer clientId, @Valid ProjectDto projectDto, BindingResult bindingResult, Model model) throws ClientException, ApiException {

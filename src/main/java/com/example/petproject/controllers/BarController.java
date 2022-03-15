@@ -5,7 +5,6 @@ import com.example.petproject.services.ProjectService;
 import com.example.petproject.services.VKService;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +17,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class BarController {
 
-    @Autowired
+    final
     VKService vkService;
-    @Autowired
-    private ProjectService projectService;
+    private final ProjectService projectService;
+
+    public BarController(VKService vkService, ProjectService projectService) {
+        this.vkService = vkService;
+        this.projectService = projectService;
+    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
