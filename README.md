@@ -4,18 +4,18 @@
 В приложении возможно добавлять собственные рекламные проекты, информация о которых хранится в базе данных. 
 
 В проекте используются следующие технологии:
-Maven
-Spring 
-Spring Boot
-Spring MVC
-Spring JPA
-Hybernate
-JDBC
-Thymeleaf
-SpEL
-Spring AOP
-AspectJ
-Lombok
-MySQL
+Maven, 
+Spring,  
+Spring Boot, 
+Spring MVC,
+Spring JPA, 
+Hybernate,
+JDBC,
+Thymeleaf,
+SpEL,
+Spring AOP,
+AspectJ,
+Lombok,
+MySQL.
 
 В дальнейшем возможно развитие проекта в полноценное приложение, позволяющее добавлять, удалять и изменять рекламные объявления Вконтакте. 
